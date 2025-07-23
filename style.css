@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+  font-family: 'Vazirmatn', sans-serif;
+  height: 100vh;
+  background-image: url('https://storage.archfly.ir/DL1/TEXTUTES/Backgroud/(archfly.ir)_Background.080.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.login-box {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1; /* باید از ز-ایندکس برای کنترل لایه‌ها استفاده کنید */
+}
+
+.alert-box {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #e74c3c;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  z-index: 9999; /* این باید بالاتر از سایر عناصر باشد */
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  font-size: 16px;
+}
+
+.alert-box.show {
+  opacity: 1;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #2980b9;
+}
+
+.links {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.links a {
+  text-decoration: none;
+  color: #2c3e50;
+  font-size: 14px;
+  margin: 0 5px;
+  cursor: pointer;
+}
