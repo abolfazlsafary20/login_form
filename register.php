@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // بررسی اینکه همه فیلدها پر شده‌اند
     if (!$name || !$email || !$raw_password) {
-        echo "<div style='color: red; font-weight: bold;'>⚠️ همه فیلدها باید پر شوند.</div>";
+        echo "<div style='color: red; font-weight: bold;'>⚠️ . همه فیلد ها باید پر شوند</div>";
         exit;
     }
 
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $check->store_result();
 
     if ($check->num_rows > 0) {
-        echo "<div style='color: red; font-weight: bold;'>⚠️ این ایمیل قبلاً ثبت شده است.</div>";
+        echo "<div style='color: red; font-weight: bold;'>⚠️ . این ایمیل قبلا ثبت شده است</div>";
     } else {
         // ذخیره اطلاعات در دیتابیس
         $stmt = $conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");

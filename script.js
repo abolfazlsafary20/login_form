@@ -10,10 +10,10 @@ function showAlert(message) {
   void alertBox.offsetWidth; // force reflow
   alertBox.classList.add("show");
 
-  // حذف هشدار بعد از 3 ثانیه
+  // حذف هشدار بعد از 4 ثانیه
   setTimeout(() => {
     alertBox.classList.remove("show");
-  }, 3000);
+  },  4000);
 }
 
 // اعتبارسنجی فرم ورود
@@ -22,7 +22,7 @@ function validateForm() {
   const password = document.getElementById("password").value.trim();
 
   if (!email || !password) {
-    showAlert("لطفاً ایمیل و رمز عبور را وارد کنید!");
+    showAlert("!لطفا ایمیل و رمر عبور را وارد کنید");
     return false;
   }
 

@@ -1,10 +1,4 @@
 <?php session_start(); ?>
-<?php
-if (isset($_SESSION['error'])) {
-    echo '<div id="phpErrorMessage" data-message="' . $_SESSION['error'] . '"></div>';
-    unset($_SESSION['error']);
-}
-?>
 <!DOCTYPE html>
 <html lang="fa">
 <head>
@@ -169,16 +163,17 @@ if (isset($_SESSION['error'])) {
         <button type="submit">ثبت نام</button>
       </form>
       <div class="links">
-        <a onclick="showForm('login')">بازگشت به ورود</a>
+       <a onclick="showForm('login')">بازگشت به ورود</a>
   
   </div>
 
-  <!-- دریافت خطای پی‌اچ‌پی از داده‌های سشن -->
-  <?php if (isset($_SESSION['error'])): ?>
-    <div id="phpErrorMessage" data-message="<?= $_SESSION['error'] ?>"></div>
-    <?php unset($_SESSION['error']); ?>
-  <?php endif; ?>
+   <script src="script.js"></script>
 
-  <script src="script.js"></script>
+<?php
+if (isset($_SESSION['error'])) {
+    echo '<div id="phpErrorMessage" data-message="' . $_SESSION['error'] . '"></div>';
+    unset($_SESSION['error']);
+}
+?>
 </body>
 </html>

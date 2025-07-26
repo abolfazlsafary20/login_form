@@ -18,6 +18,6 @@ if ($user) {
     echo "✅ لینک بازیابی رمز عبور (فقط برای تست): <br>";
     echo "<a href='#'>https://example.com/reset.php?token=$token</a>";
 } else {
-    echo "❌ ایمیلی با این مشخصات پیدا نشد.";
+    echo "❌ . ایمیلی با این مشخصات پیدا نشد";
 }
 ?>

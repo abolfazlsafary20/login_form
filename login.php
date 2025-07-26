@@ -27,17 +27,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // ورود موفقیت‌آمیز
             $_SESSION['user_id'] = $id;
             $_SESSION['user_name'] = $name;
-            header("Location: dashboard.php");
+            header("Location: welcome.php");
             exit;
         } else {
             // رمز عبور اشتباه
-            $_SESSION['error'] = "رمز عبور اشتباه است.";
+            $_SESSION['error'] = ". رمز عبور اشتباه است";
             header("Location: index.php");
             exit;
         }
     } else {
         // ایمیل پیدا نشد
-        $_SESSION['error'] = "ایمیل پیدا نشد.";
+        $_SESSION['error'] = ". ایمیل پیدا نشد";
         header("Location: index.php");
         exit;
     }
