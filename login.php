@@ -6,15 +6,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    // آماده کردن کوئری
     $stmt = $conn->prepare("SELECT id, name, email, password FROM users WHERE email = ?");
+    if (!$stmt) {
+        die("Error preparing query: " . $conn->error);
+    }
+
+    // اجرای کوئری
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();
 
+    // بررسی نتیجه
     if ($stmt->num_rows > 0) {
         $stmt->bind_result($id, $name, $emailFromDB, $hashedPassword);
         $stmt->fetch();
 
+        // چک کردن رمز عبور
         if (password_verify($password, $hashedPassword)) {
             // ورود موفقیت‌آمیز
             $_SESSION['user_id'] = $id;

@@ -1,4 +1,10 @@
 <?php session_start(); ?>
+<?php
+if (isset($_SESSION['error'])) {
+    echo '<div id="phpErrorMessage" data-message="' . $_SESSION['error'] . '"></div>';
+    unset($_SESSION['error']);
+}
+?>
 <!DOCTYPE html>
 <html lang="fa">
 <head>
@@ -25,7 +31,7 @@
       background: rgba(255, 255, 255, 0.9);
       padding: 40px;
       border-radius: 16px;
-      box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
       width: 100%;
       max-width: 400px;
       box-sizing: border-box;
@@ -46,6 +52,26 @@
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .input-group {
+      position: relative;
+    }
+
+    .input-group input {
+      padding-right: 40px;
+    }
+
+    .input-group .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 18px;
+      color: #666;
+      user-select: none;
     }
 
     button {
@@ -82,43 +108,43 @@
       position: absolute;
       top: 20px;
       right: 20px;
-      background-color: #e74c3c;
-      color: white;
-      padding: 12px 20px;
+      color: #e74c3c;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 10px 20px;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      z-index: 999;
+      font-size: 14px;
       opacity: 0;
       transition: opacity 0.5s ease-in-out;
+      z-index: 9999;
     }
 
     .alert-box.show {
       opacity: 1;
     }
+
   </style>
 </head>
 <body>
 
-  <!-- باکس هشدار -->
-  <?php if (isset($_SESSION['error'])): ?>
-    <div id="alertBox" class="alert-box"><?= $_SESSION['error']; ?></div>
-    <?php unset($_SESSION['error']); ?>
-  <?php endif; ?>
+  <!-- جعبه هشدار خطا -->
+  <div id="alertBox" class="alert-box" style="display:flex ;"></div>
 
   <div class="login-box">
-
-    <!-- فرم ورود -->
+    
     <div id="loginForm">
       <h2>مشخصات خود را وارد کنید</h2>
-      <form action="login.php" method="POST">
+      <form action="login.php" method="POST" onsubmit="return validateForm()">
         <input type="email" name="email" placeholder="ایمیل" required id="email">
-        <input type="password" name="password" placeholder="رمز عبور" required id="password">
+        <div class="input-group">
+          <input type="password" id="password" name="password" placeholder="رمز عبور" required>
+          <span id="togglePassword" class="toggle-password" style="text-decoration: line-through;">👁️</span>
+        </div>
         <button type="submit">ورود</button>
       </form>
       <div class="links">
         <a onclick="showForm('forgot')">فراموشی رمز عبور؟</a> |
         <a onclick="showForm('register')">ثبت نام</a>
-      </div>
+       </div>
     </div>
 
     <!-- فرم فراموشی رمز -->
@@ -144,13 +170,15 @@
       </form>
       <div class="links">
         <a onclick="showForm('login')">بازگشت به ورود</a>
-      </div>
-    </div>
-
+  
   </div>
 
-  <!-- اضافه کردن فایل جاوا -->
-  <script src="main.js"></script>
+  <!-- دریافت خطای پی‌اچ‌پی از داده‌های سشن -->
+  <?php if (isset($_SESSION['error'])): ?>
+    <div id="phpErrorMessage" data-message="<?= $_SESSION['error'] ?>"></div>
+    <?php unset($_SESSION['error']); ?>
+  <?php endif; ?>
 
+  <script src="script.js"></script>
 </body>
 </html>
